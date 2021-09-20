@@ -12,9 +12,9 @@
  * JS Standard: ESlint
  * 
  */
+
 /**
- * Define Global Variables
- * 
+ * @description  some global variables
  */
 
 const sections = document.querySelectorAll("section");
@@ -22,35 +22,82 @@ const main_sect = document.querySelector("main");
 const nav_menu = document.querySelector("#navbar__list");
 
 /**
- * End Global Variables
- * Start Helper Functions
- * 
+ * @description  determine which section is active
  */
 
+function makeActive() {
+    let updated_sections = document.querySelectorAll("section");
 
+    for (let i = 1; i < updated_sections.length + 1; i++) {
+
+        let sect = document.querySelector(`#section${i}`);
+        let y = Math.floor(sect.getBoundingClientRect().y);
+
+        if (y < 300 && y > -300) {
+            sect.classList.add("your-active-class");
+        } else if (sect.classList.contains("your-active-class")) {
+            sect.classList.remove("your-active-class");
+        }
+    }
+
+}
 
 /**
- * End Helper Functions
- * Begin Main Functions
- * 
+ * @description  these 3 functions are responsible for displaying and hiding nav bar
  */
 
-// build the nav
+function bodyScroll() {
+    scrollStart();
+    window.setTimeout("scrollFinished()", 500);
+}
 
+function scrollStart() {
+    document.querySelector(".page__header").style.cssText = "top:0px; transition: all .8s ;";
+}
 
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
+function scrollFinished() {
+    document.querySelector(".page__header").style.cssText = "top:-40px; transition: all .8s ;";
+}
 
 /**
- * End Main Functions
- * Begin Events
- * 
+ * @description  hovering on nav bar to display it
  */
 
-// Build menu 
+window.addEventListener('mousemove', function(event) {
+    if (event.offsetY <= 40) {
+        document.querySelector(".page__header").style.cssText = "top:0; transition: all .8s ;";
+    } else {
+        document.querySelector(".page__header").style.cssText = "top:-40px; transition: all .8s ;";
+    }
+})
+
+/**
+ * @description  checking for displaying up button on the page
+ */
+
+function scrollFunction() {
+
+    if (document.body.scrollTop > 50) {
+        document.querySelector("#up").style.display = "block";
+    } else {
+        document.querySelector("#up").style.display = "none";
+    }
+}
+
+/**
+* @description  Add event listener to scroll for activaing faced section, hide nav bar during stop of scrolling 
+                and control of up button 
+*/
+
+document.addEventListener("scroll", function() {
+    makeActive();
+    bodyScroll();
+    scrollFunction();
+});
+
+/**
+ * @description  checking to get at least 4 sections on the page
+ */
 
 if (sections.length < 4) {
     const fragment = document.createDocumentFragment();
@@ -76,14 +123,12 @@ if (sections.length < 4) {
     main_sect.appendChild(fragment);
 }
 
+/**
+ * @description Add internal links to landing page in the nav bar 
+ */
+
 for (let i = 1; i <= sections.length + 1; i++) {
     const new_li = document.createElement("li");
     new_li.innerHTML = `<a href="#section${i}">Section ${i}</a>`;
     nav_menu.appendChild(new_li);
 }
-
-
-
-// Scroll to section on link click
-
-// Set sections as active

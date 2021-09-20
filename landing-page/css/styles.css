@@ -64,6 +64,30 @@ section {
     min-height: 80vh;
 }
 
+#up {
+    all: initial;
+    text-align: center;
+    box-sizing: border-box;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-color: rgb(41, 147, 247);
+    border-radius: 50%;
+    box-shadow: none;
+    background-color: rgb(41, 147, 247);
+    z-index: 5;
+}
+
+#up a:active {
+    color: black;
+}
+
+#up a {
+    text-decoration: none;
+}
+
 
 /* ---- Module Rules ---- */
 
