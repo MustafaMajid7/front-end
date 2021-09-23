@@ -5,6 +5,8 @@
 - [Description](#Description)
 - [Usage](#Usage)
 - [Dependencies](#Dependencies)
+- [Instructions](#Instructions)
+- [Credits](#Credits)
 
 ## Description
 
@@ -17,3 +19,12 @@
 ## Dependencies
 
 > this project depends on applying Dom with adding some html and css codes to existing template
+
+## Instructions
+
+> there is a html file (called index) with 2 folders one for css styling and other for javascript
+
+## Credits
+
+> template is provided by Udacity and there are some styling added to template by me
+> all js code is added by me
