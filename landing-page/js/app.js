@@ -125,10 +125,16 @@ if (sections.length < 4) {
 
 /**
  * @description Add internal links to landing page in the nav bar 
+ *              and adding event instead of default event of scrolling of link
  */
 
 for (let i = 1; i <= sections.length + 1; i++) {
     const new_li = document.createElement("li");
     new_li.innerHTML = `<a href="#section${i}">Section ${i}</a>`;
+    new_li.addEventListener('click', function(event) {
+        const link = document.querySelector(`#section${i}`);
+        event.preventDefault();
+        link.scrollIntoView({ behavior: "smooth", block: "start", inline: "start" });
+    })
     nav_menu.appendChild(new_li);
 }
